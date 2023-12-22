@@ -12,6 +12,17 @@ model = pickle.load(open('spam.pkl', 'rb'))
 cv = pickle.load(open('vectorizer.pkl', 'rb'))
 
 
+@app.route("/")
+def index():
+    return jsonify({
+        "status": {
+            "code": 200,
+            "message": "Success fetching the API",
+        },
+        "data": None
+    }), 200
+
+
 @app.route("/prediction", methods=["GET", "POST"])
 def prediction():
     if request.method == "POST":
